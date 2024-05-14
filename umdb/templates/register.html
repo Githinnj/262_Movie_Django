@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            background-color: lightblue;
+            /* Updated path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"
+                        required>
+                </div>
+                <div class="form-group col">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"
+                        required>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                    placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <!-- Back button -->
+            <a href="#" class="btn btn-secondary btn-block mt-2" onclick="history.back()">Back</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

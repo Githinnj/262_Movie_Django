@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .movie {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .movie .movie-info {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .reviews .review {
+            margin-bottom: 20px;
+        }
+
+        .movie img {
+            max-width: 300px;
+            /* Adjust the maximum width as per your preference */
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Movies Detail</h1>
+    <div class="container">
+        <div class="movie">
+            <a href="{{ movies.trailer_link }}"><img src="{{ movies.poster.url }}" alt="{{ movies.title }}"
+                    class="img-fluid"></a>
+
+            <div class="movie-info">
+                <h2>{{ movies.title }}</h2>
+                <p><strong>Release Date:</strong> {{ movies.release_date }}</p>
+                <p><strong>Actors:</strong> {{ movies.actors }}</p>
+                <p><strong>Genre:</strong> {{ movies.genre }}</p>
+                <p><strong>Description:</strong> {{ movies.description }}</p>
+            </div>
+        </div>
+        <div class="reviews">
+
+            <h3>Reviews</h3>
+            {% for review in reviews %}
+            <div class="review">
+                <hr>
+                <p><strong>Rating:</strong> {{ review.rating }}</p>
+                <p><strong>Review:</strong> {{ review.text }}</p>
+                <p><strong>Posted By:</strong> {{ review.user.username }}</p>
+                <p><strong>Posted At:</strong> {{ review.created_at }}</p>
+            </div>
+            {% empty %}
+            <p>No reviews available for this movie.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'movie_details' %}" class="btn btn-primary">Back</a>
+    </div>
+
+    <!-- Bootstrap JS, optionally you can include this at the end of your body -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

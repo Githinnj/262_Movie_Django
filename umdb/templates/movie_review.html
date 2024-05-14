@@ -1,0 +1,59 @@
+<!-- movie_review.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate and Review Movie</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include RateYo! CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 class="mt-4">Rate and Review Movie</h2>
+
+        <form action="{% url 'rate_review_movie' movie.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="star-rating">Star Rating:</label>
+                <div id="star-rating"></div>
+                <input type="hidden" name="rating" id="rating">
+            </div>
+            <div class="form-group">
+                <label for="text">Review:</label>
+                <textarea class="form-control" id="text" name="text" rows="4" cols="50"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <a href="#" class="btn btn-secondary btn-block" onclick="history.back()">Back</a>
+        </form>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include RateYo! JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#star-rating").rateYo({
+                starWidth: "25px", // Set the width of the stars
+                spacing: "5px", // Set the spacing between stars
+                fullStar: true, // Enable full stars
+                onSet: function (rating, rateYoInstance) {
+                    $("#rating").val(rating); // Set the value of the hidden input field
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

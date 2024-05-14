@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Add Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Add custom styles here if needed */
+        body {
+            background-image: url('static/umdbapp/bgmov.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .navbar {
+            width: 100%;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: bold;
+            /* Make the text bold */
+            color: #333;
+            /* Set color for the links */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Display login, register, and logout links -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if user.is_authenticated %}
+        <p class="highlighted-text navbar-text">Welcome, {{ user.username }}!</p>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'movie_registration' %}">Register Movie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'movie_details' %}">Movie Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'edit_user' %}">Edit Profile</a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+
+    <!-- Your home page content here -->
+    <div class="container" style="color: #111; padding: 20px;">
+        <h1 style="text-align: right; font-size: 32px; margin-bottom: 20px;">Welcome to the UMDB Home Page!</h1>
+        <p style="text-align: right;font-size: 18px; line-height: 1.6;">Most popular source for movie content</p>
+    </div>
+
+
+
+    <!-- Add Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
